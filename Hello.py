@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#https://www.youtube.com/watch?v=vzlQkAzWCeI&ab_channel=Streamlit
+#https://www.youtube.com/watch?v=J8TgKxomS2g&ab_channel=Streamlit
+import os
 import streamlit as st
 from streamlit.logger import get_logger
 
@@ -25,26 +28,82 @@ def run():
     )
 
     st.write("# Welcome to Streamlit! 👋")
+    huggingFaceAPIKey = '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'
 
-    st.sidebar.success("Select a demo above.")
+    with st.sidebar:
+      st.title("Chatbot Prac")
+      testHuggingFaceAPIKey = st.text_input("Enter Huggingface API token:", type="password")
+      st.write(testHuggingFaceAPIKey)
 
-    st.markdown(
-        """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
-    )
+    #st.sidebar.success("Chatbot Prac")
+    os.environ["HUGGINGFACE_API_TOKEN"] = huggingFaceAPIKey
+    if "messages" not in st.session_state:
+      st.session_state.messages = [{"role":"assitant","content":"NV is here: How may I help you?"}]
+
+    for message in st.session_state.messages:
+      with st.chat_message(message["role"]):
+        st.write(message["content"])
+
+    def resetChatHistory():
+      st.session_state.messages = [{"role":"assitant","content":"How may I help you?"}]
+
+    def getResponse(promptInput):
+      stringDialogue = "You are a helpful assitant. You do not respond as 'User' or pretend to be 'User'. You only respond once as 'Assitant'"
+      for dictMessage in st.session_state.messages:
+        if dictMessage["role"] == "user":
+            stringDialogue += "User: " + dictMessage["content"] +"\n\n"
+        else:
+            stringDialogue += "Assitant:: " + dictMessage["content"] +"\n\n"
+      outputString = "Need to query to get an answer from  LLM for this: " + str(promptInput)
+      return outputString
+    
+    #User provided prompt
+    #Python, the walrus operator is used " := " because it emits the value assigned to the it's surrounding context.
+    if prompt := st.chat_input("Your message?"):
+      promptMessage = {"role":"user","content":prompt}
+      st.session_state.messages.append(promptMessage)
+      with st.chat_message("user"):
+        st.write(prompt)
+
+    #Generate a new response if the last message is not from assistant
+    if st.session_state.messages[-1]["role"] != "assitant":
+      with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            response = getResponse(prompt)
+            placeHolder = st.empty()
+            fullResponse = ""
+            for item in response:
+                fullResponse +=item
+            placeHolder.markdown(fullResponse)
+      responseMessage = {"role":"assistant","content": fullResponse}
+      st.session_state.messages.append(responseMessage)
+    
+
+
+
+
+
+    #st.markdown(
+    #    """
+    #    Streamlit is an open-source app framework built specifically for
+    #    Machine Learning and Data Science projects.
+    #    **👈 Select a demo from the sidebar** to see some examples
+    #    of what Streamlit can do!
+    #    ### Want to learn more?
+    #    - Check out [streamlit.io](https://streamlit.io)
+    #    - Jump into our [documentation](https://docs.streamlit.io)
+    #    - Ask a question in our [community
+    #      forums](https://discuss.streamlit.io)
+    #    ### See more complex demos
+    #   - Use a neural net to [analyze the Udacity Self-driving Car Image
+    #      Dataset](https://github.com/streamlit/demo-self-driving)
+    #    - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
+    #"""
+    #)
+
+
+    
+
 
 
 if __name__ == "__main__":
