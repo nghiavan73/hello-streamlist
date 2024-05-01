@@ -31,6 +31,7 @@ from llama_index.vector_stores.qdrant import QdrantVectorStore
 import qdrant_client
 from transformers import BitsAndBytesConfig
 
+#from transformers import BitsAndBytesConfig
 #import torch
 #from llama_index.core.prompts import PromptTemplate
 #from llama_index.llms.huggingface import HuggingFaceLLM
