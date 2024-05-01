@@ -23,22 +23,19 @@ import streamlit as st
 from streamlit.logger import get_logger
 
 
-from llama_index.llms.huggingface import HuggingFaceLLM
+#from llama_index.llms.huggingface import HuggingFaceLLM
+#import qdrant_client
+#from transformers import BitsAndBytesConfig
+#from llama_index.vector_stores.qdrant import QdrantVectorStore
+#from transformers import BitsAndBytesConfig
+#import torch
+#from llama_index.core.prompts import PromptTemplate
+#from llama_index.llms.huggingface import HuggingFaceLLM
+#from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+#from llama_index.core.node_parser import (SentenceSplitter)
 
-
-
-import qdrant_client
-from transformers import BitsAndBytesConfig
-from llama_index.vector_stores.qdrant import QdrantVectorStore
-from transformers import BitsAndBytesConfig
-import torch
-from llama_index.core.prompts import PromptTemplate
-from llama_index.llms.huggingface import HuggingFaceLLM
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from llama_index.core.node_parser import (SentenceSplitter)
-
-from llama_index.core import StorageContext,ServiceContext
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader,Settings, StorageContext
+#from llama_index.core import StorageContext,ServiceContext
+#from llama_index.core import VectorStoreIndex, SimpleDirectoryReader,Settings, StorageContext
 #from llama_index.core import vector_stores
 
 #from llama_index.vector_stores.chroma import ChromaVectorStore
