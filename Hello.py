@@ -23,7 +23,7 @@ import streamlit as st
 from streamlit.logger import get_logger
 
 
-
+from llama_index.llms.huggingface import HuggingFaceLLM
 
 
 
