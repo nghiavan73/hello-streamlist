@@ -22,7 +22,7 @@ import os
 import streamlit as st
 from streamlit.logger import get_logger
 
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader,Settings, StorageContext
+
 from llama_index.core import vector_stores
 from llama_index.core import StorageContext,ServiceContext
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
@@ -34,6 +34,8 @@ from llama_index.llms.huggingface import HuggingFaceLLM
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 import qdrant_client
 from transformers import BitsAndBytesConfig
+
+#from llama_index.core import VectorStoreIndex, SimpleDirectoryReader,Settings, StorageContext
 
 #from llama_index.vector_stores.chroma import ChromaVectorStore
 #import chromadb
