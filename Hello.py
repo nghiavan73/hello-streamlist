@@ -28,9 +28,9 @@ from streamlit.logger import get_logger
 
 
 
-import qdrant_client
+#import qdrant_client
 #from transformers import BitsAndBytesConfig
-from llama_index.vector_stores.qdrant import QdrantVectorStore
+#from llama_index.vector_stores.qdrant import QdrantVectorStore
 #from transformers import BitsAndBytesConfig
 #import torch
 #from llama_index.core.prompts import PromptTemplate
