@@ -25,7 +25,7 @@ from streamlit.logger import get_logger
 
 
 
-from transformers import BitsAndBytesConfig
+
 
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 import qdrant_client
